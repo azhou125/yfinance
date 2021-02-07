@@ -148,7 +148,7 @@ class TickerBase():
 
         # Getting data from json
         url = "{}/v8/finance/chart/{}".format(self._base_url, self.ticker)
-        data = _requests.get(url=url, params=params, proxies=proxy)
+        data = _requests.get(url=url, params=params, proxies=proxy, timeout=(2, 10))
         if "Will be right back" in data.text:
             raise RuntimeError("*** YAHOO! FINANCE IS CURRENTLY DOWN! ***\n"
                                "Our engineers are working quickly to resolve "
@@ -532,7 +532,7 @@ class TickerBase():
         url = 'https://markets.businessinsider.com/ajax/' \
               'SearchController_Suggest?max_results=25&query=%s' \
             % urlencode(q)
-        data = _requests.get(url=url, proxies=proxy).text
+        data = _requests.get(url=url, proxies=proxy, timeout=(2, 10)).text
 
         search_str = '"{}|'.format(ticker)
         if search_str not in data:
