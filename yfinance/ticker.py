@@ -53,7 +53,8 @@ class Ticker(TickerBase):
                 proxy = proxy["https"]
             proxy = {"https": proxy}
 
-        r = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).json()
+        # r = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).json()
+        r = _requests.get(url=url, proxies=proxy, timeout=None).json()
         if r['optionChain']['result']:
             for exp in r['optionChain']['result'][0]['expirationDates']:
                 self._expirations[_datetime.datetime.utcfromtimestamp(

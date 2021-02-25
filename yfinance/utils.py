@@ -43,10 +43,12 @@ def empty_df(index=[]):
 
 
 def get_json(url, proxy=None):
-    html = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).text
+    # html = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).text
+    html = _requests.get(url=url, proxies=proxy, timeout=None).text
 
     if "QuoteSummaryStore" not in html:
-        html = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).text
+        # html = _requests.get(url=url, proxies=proxy, timeout=(10, 20)).text
+        html = _requests.get(url=url, proxies=proxy, timeout=None).text
         if "QuoteSummaryStore" not in html:
             return {}
 
